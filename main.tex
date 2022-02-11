@@ -21,6 +21,14 @@
 \def\Q{\mathbb{Q}}
 \def\P{\mathcal{P}}
 
+\makeatletter
+\newenvironment<>{proofs}[1][\proofname]{%
+	\par
+	\def\insertproofname{#1\@addpunct{.}}%
+	\usebeamertemplate{proof begin}#2}
+{\usebeamertemplate{proof end}}
+\makeatother
+
 \begin{document}
 	
 \frame{\titlepage}
@@ -57,20 +65,43 @@
 
 \begin{frame}
 	\frametitle{Strategy for proving non-expressibility results}
-	Suppose we want to show that some property \alert{$ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
+	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
 	\begin{itemize}
 		\item<1-> Assume, for a sake of contradiction that there is some formula $ \varphi $ expressing $ P $.
 		\item<2-> Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that ``approximates'' precisely the negation of $ P $.
-		\item<3-> Consider the set $ T = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
-		\item<4-> Conclude that $ T $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
-		\item<5-> Show that, on the other hand, for every finite $ M \subseteq T $, there is a model with property $ P $.
-		\item<6-> Conclude that, by compactness, $ T $ is satisfiable, meaning that we get a contradiction.
+		\item<3-> Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
+		\item<4-> Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
+		\item<5-> Show that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
+		\item<6-> Conclude that, by compactness, $ C $ is satisfiable, meaning that we get a contradiction.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Finiteness is not first-order definable}
-	Finiteness is not first
+	\begin{theorem}
+		There is no formula $ \varphi $ that is satisfied by structure $ A $ iff $ A $ is finite.
+	\end{theorem}
+	\begin{proofs}
+		\begin{itemize}
+			\item Suppose we have such a formula $ \varphi $.
+			\item We ``approximate infiniteness'' by considering $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
+			\item \[
+				C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
+			\]
+		\end{itemize}
+	\end{proofs}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Finiteness is not first-order definable}
+	\begin{proof}[\proofname\ (continued)]
+		\begin{itemize}
+			\item Consider an arbitrary but finite $ M \subseteq C $ where, as we just defined, \[
+			C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\}
+			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
+			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable as we argued above. This is a contradiction.
+		\end{itemize}
+	\end{proof}
 \end{frame}
 	
 \end{document}
