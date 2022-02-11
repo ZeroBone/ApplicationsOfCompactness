@@ -1,4 +1,5 @@
 \documentclass{beamer}
+% \documentclass[handout]{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -70,7 +71,7 @@
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
 	\begin{itemize}[<+->]
 		\item Assume, for a sake of contradiction that there is some formula $ \varphi $ expressing $ P $.
-		\item Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that ``approximates'' precisely the negation of $ P $.
+		\item Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that describes the negation of $ P $.
 		\item Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
 		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
 		\item Show that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
@@ -87,7 +88,7 @@
 	\begin{proofs}
 		\begin{itemize}[<+->]
 			\item Suppose we have such a formula $ \varphi $.
-			\item We ``approximate infiniteness'' by considering $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
+			\item We describe infiniteness with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
 			\item \[
 				C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
@@ -100,9 +101,9 @@
 	\begin{proof}[\proofname\ (continued)]
 		\begin{itemize}[<+->]
 			\item Consider an arbitrary but finite $ M \subseteq C $ where, as we just defined, \[
-			C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\}
+			C = \underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}
 			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
-			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable as we argued above. This is a contradiction.
+			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable as we argued on the previous slide. This is a contradiction.
 		\end{itemize}
 	\end{proof}
 \end{frame}
@@ -115,21 +116,18 @@
 	\pause
 	\begin{proofs}[\proofname\ attempt (incorrect)]
 		\begin{itemize}
-			\item Suppose we have such a formula $ \varphi $. We ``approximate existence of cycles'' by considering $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : E(x_1, x_2) \wedge \dots \wedge E(x_{k-1}, x_k) \wedge E(x_k, x_1)}_{\text{There is a cycle of length } k}\]
-			\item \[
-			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}}_{\Rightarrow \text{ unsatisfiable}}
-			\]
+			\item Suppose we have such a formula $ \varphi $. We describe the existence of some cycle with $ \{\lambda_k \mid k \in \Npos\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is a cycle of length } k}\]
 		\end{itemize}
 	\end{proofs}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Acyclicity is not first-order definable}
 	\begin{proofs}[\proofname\ attempt (incorrect) - continued]
 		\begin{itemize}
-			\item Consider some finite subset \[
-			M \subseteq C = \underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}
+			\item \[
+			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
+			\item Consider some finite subset $ M \subseteq C $
 			\item \alert{Problem}: $ M $ may contain $ \varphi $ and some $ \lambda_i $-formulas, we cannot however construct a graph that is both acyclic and has a cycle of some specific length.
 		\end{itemize}
 	\end{proofs}
@@ -146,7 +144,7 @@
 	
 	\textbf{Trick}: we can instead prove that the negation of acyclicity, namely the existence of a cycle, is not first-order definable. This will prove the initial theorem, because \alert{some property is first-order definable iff its negation is first-order definable}.
 	
-	\begin{theorem}[Equivalent version of previous Theorem]
+	\begin{theorem}[Equivalent to previous Theorem]
 		Let $ \sigma = \{E_{/2}\} $ be a signature, where $ E $ is the predicate symbol representing the edge relation. There is no $ \varphi \in \FO(\sigma) $ expressing the fact that the graph contains a cycle.
 	\end{theorem}
 \end{frame}
@@ -154,13 +152,30 @@
 \begin{frame}
 	\begin{proof}
 		\begin{itemize}
-			\item Suppose we have such a formula $ \varphi $. We ``approximate acyclicity'' by considering $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : E(x_1, x_2) \wedge \dots \wedge E(x_{k-1}, x_k) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
-			C := \underbrace{\underbrace{\{\varphi\}}_{\exists\text{ cycle}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{Graph is acyclic}}}_{\Rightarrow \text{ unsatisfiable}}
+			\item Suppose we have such a formula $ \varphi $. We define \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
+			C := \underbrace{\underbrace{\{\varphi\}}_{\exists\text{ cycle}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There are no cycles}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
-			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. We can easily construct a graph with a cycle of length $ k $ and without shorter cycles, meaning that $ M $ is satisfiable.
+			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \Npos $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. We can easily construct a graph with a cycle of length $ k $ and without shorter cycles (how?), meaning that $ M $ is satisfiable.
 			\item By compactness, $ C $ is satisfiable, which is a contradiction.
 		\end{itemize}
 	\end{proof}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Existence of odd-length path is not first-order definable}
+	
+	\begin{theorem}
+	There is no $ \varphi \in \FO(\{E_{/2}\}) $ expressing the existence of an odd-length path.
+	\end{theorem}
+	\pause
+	\begin{proofs}
+		\begin{itemize}[<+->]
+			\item Suppose we have such a formula $ \varphi $. We describe non-existence of an odd-length path with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
+			\item \[
+			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
+			\]
+		\end{itemize}
+	\end{proofs}
 \end{frame}
 
 \end{document}
