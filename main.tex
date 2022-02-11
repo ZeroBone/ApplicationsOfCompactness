@@ -1,16 +1,76 @@
 \documentclass{beamer}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{mathrsfs}
+
+\usetheme{Madrid}
+\usecolortheme{default}
 
 \title{Applying the Compactness Theorem}
 \author{Alexander Mayorov}
 \institute{TU Kaiserslautern}
 
+\def\N{\mathbb{N}_{\ge 0}}
+\def\Npos{\mathbb{N}_{\ge 1}}
+\def\N{\mathbb{N}_{\ge 0}}
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\P{\mathcal{P}}
+
 \begin{document}
 	
-	\frame{\titlepage}
-	
-	\begin{frame}
-		\frametitle{TBA}
-		Test
-	\end{frame}
+\frame{\titlepage}
+
+\begin{frame}
+	\frametitle{The compactness theorem}
+	\begin{theorem}[Compactness for propositional logic]
+		A set of propositional formulas $ \Sigma $ is satisfiable if and only if every finite subset of $ \Sigma $ is satisfiable.
+	\end{theorem}
+	\begin{proof}
+		($ \Rightarrow $): If there exists $ \nu \models \Sigma $, then $ \nu $ will satisfy every finite subset of $ \Sigma $.
+		
+		($ \Leftarrow $): see lecture notes
+	\end{proof}
+
+	\pause
+
+	\begin{theorem}[Contrapositive form of compactness]
+		$ \Sigma $ is unsatisfiable if and only if there is some finite unsatisfiable subset in $ \Sigma $
+	\end{theorem}
+\end{frame}
+
+\begin{frame}
+	\begin{theorem}[Compactness for first order logic]
+		A set of closed first order logic formulas $ \Sigma $ is satisfiable if and only if every finite subset of $ \Sigma $ is satisfiable.
+	\end{theorem}
+	\pause
+	\begin{proof}
+		($ \Rightarrow $): A model for $ \Sigma $ is also a model for every finite subset thereof.
+		
+		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for a sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the Gödel-Herbrand-Skolem theorem, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \alert{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
+	\end{proof}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Strategy for proving non-expressibility results}
+	Suppose we want to show that some property \alert{$ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
+	\begin{itemize}
+		\item<1-> Assume, for a sake of contradiction that there is some formula $ \varphi $ expressing $ P $.
+		\item<2-> Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that ``approximates'' precisely the negation of $ P $.
+		\item<3-> Consider the set $ T = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
+		\item<4-> Conclude that $ T $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
+		\item<5-> Show that, on the other hand, for every finite $ M \subseteq T $, there is a model with property $ P $.
+		\item<6-> Conclude that, by compactness, $ T $ is satisfiable, meaning that we get a contradiction.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Finiteness is not first-order definable}
+	Finiteness is not first
+\end{frame}
 	
 \end{document}
