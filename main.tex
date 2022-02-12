@@ -1,5 +1,5 @@
-\documentclass[handout]{beamer}
-% \documentclass{beamer}
+% \documentclass[handout]{beamer}
+\documentclass{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -32,9 +32,19 @@
 {\usebeamertemplate{proof end}}
 \makeatother
 
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
 \begin{document}
 	
 \frame{\titlepage}
+
+\section{Compactness theorems}
 
 \begin{frame}
 	\frametitle{The compactness theorem}
@@ -66,6 +76,8 @@
 	\end{proof}
 \end{frame}
 
+\section{Proving non-expressibility using compactness}
+
 \begin{frame}
 	\frametitle{Strategy for proving non-expressibility results}
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
@@ -79,6 +91,8 @@
 	\end{itemize}
 \end{frame}
 
+\section{Examples of inexpressibility results}
+
 \begin{frame}
 	\frametitle{Finiteness is not first-order definable}
 	\begin{theorem}
@@ -86,10 +100,8 @@
 	\end{theorem}
 	\pause
 	\begin{proofs}
-		\begin{itemize}[<+->]
-			\item Suppose there were such a formula $ \varphi $.
-			\item We describe infiniteness with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
-			\item \[
+		\begin{itemize}
+			\item Suppose there were such a formula $ \varphi $. We describe infiniteness with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\] \[
 				C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
 		\end{itemize}
