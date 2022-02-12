@@ -73,7 +73,7 @@
 	\begin{proof}
 		($ \Rightarrow $): A model for $ \Sigma $ is also a model for every finite subset thereof.
 		
-		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for the sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the Gödel-Herbrand-Skolem theorem, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \alert{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
+		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for the sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the \textit{Gödel-Herbrand-Skolem theorem}, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \textit{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
 	\end{proof}
 \end{frame}
 
@@ -114,7 +114,7 @@
 
 \begin{frame}
 	\frametitle{Strategy for proving non-expressibility results}
-	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
+	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. We can try proving this using the following strategy:
 	\begin{itemize}[<+->]
 		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
 		\item \textit{Construct} an infinite set of formulas (i.e. $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
@@ -148,7 +148,7 @@
 		\begin{itemize}[<+->]
 			\item Consider an arbitrary but finite $ M \subseteq C $ where, as we just defined, \[
 			C = \underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}
-			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
+			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements is thus a model for $ M $.
 			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable by construction (see previous slide). This is a contradiction.
 		\end{itemize}
 	\end{proof}
@@ -169,7 +169,7 @@
 
 \begin{frame}
 	\begin{proofs}[\proofname\ attempt (incorrect) - continued]
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item \[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
@@ -177,6 +177,8 @@
 			\item \alert{Problem}: $ M $ may contain $ \varphi $ and some $ \lambda_i $-formulas, we cannot however construct a graph that is both acyclic and has a cycle of some specific length.
 		\end{itemize}
 	\end{proofs}
+
+	\pause
 
 	\textbf{Important observation}: in order for this proof technique to work, we need to ``approximate'' the negation of $ P $ using $ \{\lambda_k \mid k \in \Npos\} $ in a way, such that a finite subset of $ \{\lambda_k \mid k \in \Npos\} $ doesn't directly contradict $ \varphi $.
 	
@@ -214,7 +216,7 @@
 	\pause
 	\begin{proofs}
 		\begin{itemize}
-			\item Suppose there were such a formula $ \varphi $. We describe the property that \alert{the longest path is of even or infinite length} with $ \{\lambda_{2n+1} \mid n \in \N\} $: \begin{align*}
+			\item Suppose there were such a formula $ \varphi $. We describe the property that \textit{the longest path is of even or infinite length} with $ \{\lambda_{2n+1} \mid n \in \N\} $: \begin{align*}
 				\psi_k &:= \underbrace{\exists x_1, \dots, x_{k+1} : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^{k+1} x_i \neq x_j \wedge \bigwedge_{i=1}^k E(x_i, x_{i+1})}_{\text{There exists a path of length } k} \\
 				\lambda_k &:= \neg(\underbrace{\psi_k \wedge \neg\psi_{k+1}}_{\text{Length of longest path } = k}) \equiv \neg\psi_k \vee \psi_{k+1}
 			\end{align*}
@@ -242,7 +244,7 @@
 	The following is a simplified version of the famous Ramsey's Theorem.
 	
 	\begin{theorem}[Ramsey Theorem]
-		Every infinite graph has either an infinite clique or an infinite independent set.
+		Every infinite graph has either an infinite clique or an infinite independent-set.
 	\end{theorem}
 
 	\pause
@@ -257,7 +259,7 @@
 \begin{frame}
 	\frametitle{Finitary Ramsey Theorem}
 	\begin{proofs}
-		Suppose, for the sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
+		Suppose, for the sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent-set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
 			\alpha_k &:= \underbrace{\forall v_1, \dots, v_k \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j\Bigg) \rightarrow \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k \neg E(v_i, v_j)\Bigg) \wedge \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k E(v_i, v_j)\Bigg)}_{\text{There is no clique or independent-set of size } k} \\
 			\beta_k &:= \underbrace{\exists v_1, \dots, v_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j}_{\text{Graph has at least } k \text{ vertices}} \\
 			\Sigma &:= \{\alpha_k\} \cup \{\beta_n \mid n \in \N\}
@@ -269,10 +271,10 @@
 	\frametitle{Finitary Ramsey Theorem}
 	\begin{proof}[\proofname\ (continued)]
 		\begin{itemize}[<+->]
-			\item Consider an arbitrary but finite $ M \subseteq \Sigma $. There exists an $ n \in \N $ such that there is no $ \beta_i \in M $ for $ i \ge n $. By our assumption, there exists a graph of size $ n $ with no $ k $-clique and no $ k $-independent set. This graph satisfies $ M $.
+			\item Consider an arbitrary but finite $ M \subseteq \Sigma $. There exists an $ n \in \N $ such that there is no $ \beta_i \in M $ for $ i \ge n $. By our assumption, there exists a graph of size $ n $ with no $ k $-clique and no $ k $-independent-set. This graph satisfies $ M $.
 			\item Every finite subset of $ \Sigma $ has a model, so, by compactness, $ \Sigma $ is satisfiable.
-			\item This implies the existence of an infinite graph with no $ k $-clique and no $ k $-independent set.
-			\item It follows that there exists an infinite graph with no infinite clique and no infinite independent set. This contradicts Ramsey's Theorem.
+			\item This implies the existence of an infinite graph with no $ k $-clique and no $ k $-independent-set.
+			\item It follows that there exists an infinite graph with neither an infinite clique nor an infinite independent-set, which is a contradiction to Ramsey's Theorem.
 		\end{itemize}
 	\end{proof}
 \end{frame}
