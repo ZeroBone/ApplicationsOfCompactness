@@ -16,7 +16,7 @@
 
 \def\N{\mathbb{N}_{\ge 0}}
 \def\Npos{\mathbb{N}_{\ge 1}}
-\def\N{\mathbb{N}_{\ge 0}}
+\def\Nsimpl{\mathbb{N}}
 \def\R{\mathbb{R}}
 \def\Z{\mathbb{Z}}
 \def\Q{\mathbb{Q}}
@@ -104,7 +104,7 @@
 	\begin{proof}
 		Consider \begin{align*}
 		\lambda_k &:= \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}} \\
-		C &:= \underbrace{\underbrace{\Sigma}_{\forall n \in \N \text{ there is model of size n}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{C \text{ finitely satisfiable } \Rightarrow \text{ } C \text{ satisfiable } \Rightarrow \text{ } C \text{ has an } \infty \text{ model}}
+		C &:= \underbrace{\underbrace{\Sigma}_{\forall n \in \N \text{ there is model of size n}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{C \text{ finitely satisfiable } \Rightarrow \text{ } C \text{ satisfiable } \Rightarrow \text{ } \Sigma \text{ has an } \infty \text{ model}}
 		\end{align*}
 	\end{proof}
 \end{frame}
@@ -235,12 +235,44 @@
 	\end{proof}
 \end{frame}
 
-\section{Another application: Finitary Ramsey Theorem}
+\section{Application: Finitary Ramsey Theorem}
 
 \begin{frame}
+	\frametitle{Finitary Ramsey Theorem}
 	\begin{theorem}[Ramsey Theorem]
 		Every infinite graph has either an infinite clique or and infinite independent set.
 	\end{theorem}
+
+	\pause
+
+	Assuming this theorem holds, we can use compactness to show the following finite version of Ramsey's theorem:
+
+	\begin{theorem}[Finitary Ramsey Theorem]
+		For every $ k \in \Nsimpl $ there is an $ n \in \Nsimpl $, such that every graph with $ n $ vertices has either a $ k $-clique or a $ k $-independent-set.
+	\end{theorem}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Finitary Ramsey Theorem}
+	\begin{proofs}
+		Suppose, for a sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
+			\alpha_k &:= \underbrace{\forall v_1, \dots, v_k \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j\Bigg) \rightarrow \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k \neg E(v_i, v_j)\Bigg) \wedge \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k E(v_i, v_j)\Bigg)}_{\text{There is no clique or independent-set of size } k} \\
+			\beta_k &:= \underbrace{\exists v_1, \dots, v_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j}_{\text{Graph has at least } k \text{ vertices}} \\
+			\Sigma &:= \{\alpha_k\} \cup \{\beta_n \mid n \in \N\}
+		\end{align*}
+	\end{proofs}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Finitary Ramsey Theorem}
+	\begin{proof}[\proofname\ (continued)]
+		\begin{itemize}
+			\item Consider an arbitrary but finite $ M \subseteq \Sigma $. There exists an $ n \in \N $ such that there is no $ \beta_i \in M $ for $ i \ge n $. By our assumption, there exists a graph of size $ n $ with no $ k $-clique and no $ k $-independent set. This graph satisfies $ M $.
+			\item Every finite subset of $ \Sigma $ has a model, so, by compactness, $ \Sigma $ is satisfiable.
+			\item This implies the existence of an infinite graph with no $ k $-clique and no $ k $-independent set.
+			\item It follows that there exists an infinite graph with no infinite clique and no infinite independent set. This contradicts Ramsey's Theorem.
+		\end{itemize}
+	\end{proof}
 \end{frame}
 
 \end{document}
