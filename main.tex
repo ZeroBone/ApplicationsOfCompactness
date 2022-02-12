@@ -54,13 +54,13 @@
 	\begin{proof}
 		($ \Rightarrow $): If there exists $ \nu \models \Sigma $, then $ \nu $ will satisfy every finite subset of $ \Sigma $.
 		
-		($ \Leftarrow $): this direction is rather tricky, see lecture notes
+		($ \Leftarrow $): this direction is rather tricky, see lecture notes.
 	\end{proof}
 
 	\pause
 
 	\begin{theorem}[Contrapositive form of compactness]
-		$ \Sigma $ is unsatisfiable iff there exists some finite unsatisfiable subset of $ \Sigma $
+		$ \Sigma $ is unsatisfiable iff there exists some finite unsatisfiable subset of $ \Sigma $.
 	\end{theorem}
 \end{frame}
 
@@ -73,7 +73,7 @@
 	\begin{proof}
 		($ \Rightarrow $): A model for $ \Sigma $ is also a model for every finite subset thereof.
 		
-		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for a sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the Gödel-Herbrand-Skolem theorem, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \alert{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
+		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for the sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the Gödel-Herbrand-Skolem theorem, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \alert{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
 	\end{proof}
 \end{frame}
 
@@ -82,7 +82,7 @@
 \begin{frame}
 	\frametitle{Compactness and entailment}
 	\begin{lemma}
-		Let $ \Sigma $ be a set of formulas and $ \alpha $ be a formula. Then, $ \Sigma \models \alpha $ iff there exists a finite $ \Sigma' \subseteq \Sigma $ such that $ \Sigma' \models \alpha $
+		Let $ \Sigma $ be a set of formulas and $ \alpha $ be a formula. Then, $ \Sigma \models \alpha $ iff there exists a finite $ \Sigma' \subseteq \Sigma $ such that $ \Sigma' \models \alpha $.
 	\end{lemma}
 	\pause
 	\begin{proof}
@@ -92,6 +92,7 @@
 			&\Leftrightarrow \Sigma' \cup \{\neg\alpha\} \text{ is unsatisfiable}, \Sigma' \text{ finite} \\
 			&\Leftrightarrow \Sigma' \models \alpha \text{ for some finite } \Sigma'
 		\end{align*}
+		Here, we use the contrapositive form of compactness in the second equivalence.
 	\end{proof}
 \end{frame}
 
@@ -115,12 +116,12 @@
 	\frametitle{Strategy for proving non-expressibility results}
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
 	\begin{itemize}[<+->]
-		\item Assume, for a sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
-		\item Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that describes the negation of $ P $.
-		\item Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
-		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
-		\item Show that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
-		\item Conclude that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiablity of $ C $.
+		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
+		\item \textit{Construct} an infinite set of formulas (i.e. $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
+		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
+		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
+		\item \textit{Show} that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
+		\item \textit{Conclude} that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiablity of $ C $.
 	\end{itemize}
 \end{frame}
 
@@ -176,8 +177,6 @@
 			\item \alert{Problem}: $ M $ may contain $ \varphi $ and some $ \lambda_i $-formulas, we cannot however construct a graph that is both acyclic and has a cycle of some specific length.
 		\end{itemize}
 	\end{proofs}
-
-	\pause
 
 	\textbf{Important observation}: in order for this proof technique to work, we need to ``approximate'' the negation of $ P $ using $ \{\lambda_k \mid k \in \Npos\} $ in a way, such that a finite subset of $ \{\lambda_k \mid k \in \Npos\} $ doesn't directly contradict $ \varphi $.
 	
@@ -243,12 +242,12 @@
 	The following is a simplified version of the famous Ramsey's Theorem.
 	
 	\begin{theorem}[Ramsey Theorem]
-		Every infinite graph has either an infinite clique or and infinite independent set.
+		Every infinite graph has either an infinite clique or an infinite independent set.
 	\end{theorem}
 
 	\pause
 
-	We can use compactness to show that this theorem implies the the following finite version of it:
+	We can use compactness to show that this theorem implies the following finite version of it:
 
 	\begin{theorem}[Finitary Ramsey Theorem]
 		For every $ k \in \Nsimpl $ there is an $ n \in \Nsimpl $, such that every graph with $ n $ vertices has either a $ k $-clique or a $ k $-independent-set.
@@ -258,7 +257,7 @@
 \begin{frame}
 	\frametitle{Finitary Ramsey Theorem}
 	\begin{proofs}
-		Suppose, for a sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
+		Suppose, for the sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
 			\alpha_k &:= \underbrace{\forall v_1, \dots, v_k \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j\Bigg) \rightarrow \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k \neg E(v_i, v_j)\Bigg) \wedge \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k E(v_i, v_j)\Bigg)}_{\text{There is no clique or independent-set of size } k} \\
 			\beta_k &:= \underbrace{\exists v_1, \dots, v_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j}_{\text{Graph has at least } k \text{ vertices}} \\
 			\Sigma &:= \{\alpha_k\} \cup \{\beta_n \mid n \in \N\}
