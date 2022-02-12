@@ -1,5 +1,5 @@
-% \documentclass[handout]{beamer}
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -60,11 +60,12 @@
 	\pause
 
 	\begin{theorem}[Contrapositive form of compactness]
-		$ \Sigma $ is unsatisfiable if and only if there is some finite unsatisfiable subset in $ \Sigma $
+		$ \Sigma $ is unsatisfiable iff there exists some finite unsatisfiable subset of $ \Sigma $
 	\end{theorem}
 \end{frame}
 
 \begin{frame}
+	\frametitle{Compactness for first order logic}
 	\begin{theorem}[Compactness for first order logic]
 		A set of closed first order logic formulas $ \Sigma $ is satisfiable if and only if every finite subset of $ \Sigma $ is satisfiable.
 	\end{theorem}
@@ -73,6 +74,38 @@
 		($ \Rightarrow $): A model for $ \Sigma $ is also a model for every finite subset thereof.
 		
 		($ \Leftarrow $): We can assume without loss of generality that all $ \varphi \in \Sigma $ are Skolem normal form sentences with matrix in CNF (via Tseitin's transformation). Suppose, for a sake of contradiction, $ \Sigma $ were unsatisfiable. Since $ \Sigma $ is satisfiable iff $ E(\Sigma) $ is satisfiable by the Gödel-Herbrand-Skolem theorem, we conclude that $ E(\Sigma) $ is unsatisfiable. By the \alert{compactness theorem for propositional logic}, there must exist some finite unsatisfiable subset $ A \subseteq E(\Sigma) $. Taking formulas from $ \Sigma $ whose ground terms appear in $ A $ gives us a finite unsatisfiable subset of $ \Sigma $.
+	\end{proof}
+\end{frame}
+
+\section{Direct applications}
+
+\begin{frame}
+	\frametitle{Compactness and entailment}
+	\begin{lemma}
+		Let $ \Sigma $ be a set of formulas and $ \alpha $ be a formula. Then, $ \Sigma \models \alpha $ iff there exists a finite $ \Sigma' \subseteq \Sigma $ such that $ \Sigma' \models \alpha $
+	\end{lemma}
+	\pause
+	\begin{proof}
+		\begin{align*}
+			\Sigma \models \alpha &\Leftrightarrow \Sigma \cup \{\neg\alpha\} \text{ is unsatisfiable} \\
+			&\Leftrightarrow \text{There is a finite unsatisfiable } \Sigma' \subseteq \Sigma \cup \{\neg\alpha\} \\
+			&\Leftrightarrow \Sigma' \cup \{\neg\alpha\} \text{ is unsatisfiable}, \Sigma' \text{ finite} \\
+			&\Leftrightarrow \Sigma' \models \alpha \text{ for some finite } \Sigma'
+		\end{align*}
+	\end{proof}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Arbitrary large finite models}
+	\begin{lemma}
+		Let $ \Sigma $ be a set of first-order sentences such that every $ \varphi \in \Sigma $ has an arbitrary large model. Then, $ \Sigma $ also has an infinite model.
+	\end{lemma}
+	\pause
+	\begin{proof}
+		Consider \begin{align*}
+		\lambda_k &:= \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}} \\
+		C &:= \underbrace{\underbrace{\Sigma}_{\forall n \in \N \text{ there is model of size n}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{C \text{ finitely satisfiable } \Rightarrow \text{ } C \text{ satisfiable } \Rightarrow \text{ } C \text{ has an } \infty \text{ model}}
+		\end{align*}
 	\end{proof}
 \end{frame}
 
@@ -114,7 +147,7 @@
 		\begin{itemize}[<+->]
 			\item Consider an arbitrary but finite $ M \subseteq C $ where, as we just defined, \[
 			C = \underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}
-			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
+			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
 			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable by construction (see previous slide). This is a contradiction.
 		\end{itemize}
 	\end{proof}
@@ -200,6 +233,14 @@
 			\item It follows that, by compactness, $ C $ is satisfiable. At the same time, $ C $ is unsatisfiable by construction. This is a contradiction.
 		\end{itemize}
 	\end{proof}
+\end{frame}
+
+\section{Another application: Finitary Ramsey Theorem}
+
+\begin{frame}
+	\begin{theorem}[Ramsey Theorem]
+		Every infinite graph has either an infinite clique or and infinite independent set.
+	\end{theorem}
 \end{frame}
 
 \end{document}
