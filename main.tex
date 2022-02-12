@@ -120,7 +120,7 @@
 		\item Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
 		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
 		\item Show that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
-		\item Conclude that, by compactness, $ C $ is satisfiable, meaning that we get a contradiction.
+		\item Conclude that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiablity of $ C $.
 	\end{itemize}
 \end{frame}
 
@@ -168,7 +168,7 @@
 
 \begin{frame}
 	\begin{proofs}[\proofname\ attempt (incorrect) - continued]
-		\begin{itemize}
+		\begin{itemize}[<+->]
 			\item \[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
@@ -196,7 +196,7 @@
 
 \begin{frame}
 	\begin{proof}
-		\begin{itemize}
+		\begin{itemize}[<+->]
 			\item Suppose there were such a formula $ \varphi $. We define \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\exists\text{ cycle}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There are no cycles}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
@@ -225,7 +225,7 @@
 
 \begin{frame}
 	\begin{proof}[\proofname\ (continued)]
-		\begin{itemize}
+		\begin{itemize}[<+->]
 			\item \[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Longest path is of odd length}} \cup \underbrace{\{\lambda_{2n+1} \mid n \in \N\}}_{\text{Longest path is of even or infinite length}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
@@ -239,6 +239,9 @@
 
 \begin{frame}
 	\frametitle{Finitary Ramsey Theorem}
+	
+	The following is a simplified version of the famous Ramsey's Theorem.
+	
 	\begin{theorem}[Ramsey Theorem]
 		Every infinite graph has either an infinite clique or and infinite independent set.
 	\end{theorem}
@@ -266,7 +269,7 @@
 \begin{frame}
 	\frametitle{Finitary Ramsey Theorem}
 	\begin{proof}[\proofname\ (continued)]
-		\begin{itemize}
+		\begin{itemize}[<+->]
 			\item Consider an arbitrary but finite $ M \subseteq \Sigma $. There exists an $ n \in \N $ such that there is no $ \beta_i \in M $ for $ i \ge n $. By our assumption, there exists a graph of size $ n $ with no $ k $-clique and no $ k $-independent set. This graph satisfies $ M $.
 			\item Every finite subset of $ \Sigma $ has a model, so, by compactness, $ \Sigma $ is satisfiable.
 			\item This implies the existence of an infinite graph with no $ k $-clique and no $ k $-independent set.
