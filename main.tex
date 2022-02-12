@@ -1,5 +1,5 @@
-\documentclass{beamer}
-% \documentclass[handout]{beamer}
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -44,7 +44,7 @@
 	\begin{proof}
 		($ \Rightarrow $): If there exists $ \nu \models \Sigma $, then $ \nu $ will satisfy every finite subset of $ \Sigma $.
 		
-		($ \Leftarrow $): see lecture notes
+		($ \Leftarrow $): this direction is rather tricky, see lecture notes
 	\end{proof}
 
 	\pause
@@ -70,7 +70,7 @@
 	\frametitle{Strategy for proving non-expressibility results}
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. Then we can try proving it using the following proof schema:
 	\begin{itemize}[<+->]
-		\item Assume, for a sake of contradiction that there is some formula $ \varphi $ expressing $ P $.
+		\item Assume, for a sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
 		\item Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that describes the negation of $ P $.
 		\item Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
 		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
@@ -87,7 +87,7 @@
 	\pause
 	\begin{proofs}
 		\begin{itemize}[<+->]
-			\item Suppose we have such a formula $ \varphi $.
+			\item Suppose there were such a formula $ \varphi $.
 			\item We describe infiniteness with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
 			\item \[
 				C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
@@ -116,7 +116,7 @@
 	\pause
 	\begin{proofs}[\proofname\ attempt (incorrect)]
 		\begin{itemize}
-			\item Suppose we have such a formula $ \varphi $. We describe the existence of some cycle with $ \{\lambda_k \mid k \in \Npos\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is a cycle of length } k}\]
+			\item Suppose there were such a formula $ \varphi $. We describe the existence of some cycle with $ \{\lambda_k \mid k \in \Npos\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is a cycle of length } k}\]
 		\end{itemize}
 	\end{proofs}
 \end{frame}
@@ -152,7 +152,7 @@
 \begin{frame}
 	\begin{proof}
 		\begin{itemize}
-			\item Suppose we have such a formula $ \varphi $. We define \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
+			\item Suppose there were such a formula $ \varphi $. We define \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\exists\text{ cycle}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There are no cycles}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
 			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \Npos $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. We can easily construct a graph with a cycle of length $ k $ and without shorter cycles (how?), meaning that $ M $ is satisfiable.
@@ -162,20 +162,32 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Existence of odd-length path is not first-order definable}
+	\frametitle{Longest path has odd length is not first-order definable}
 	
 	\begin{theorem}
-	There is no $ \varphi \in \FO(\{E_{/2}\}) $ expressing the existence of an odd-length path.
+	There is no $ \varphi \in \FO(\{E_{/2}\}) $ expressing the property that the longest path in the graph has odd length.
 	\end{theorem}
 	\pause
 	\begin{proofs}
-		\begin{itemize}[<+->]
-			\item Suppose we have such a formula $ \varphi $. We describe non-existence of an odd-length path with $ \{\lambda_k \mid k \in \N\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{i \neq j} x_i \neq x_j}_{\text{Universe has } \ge k \text{ elements}}\]
-			\item \[
-			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}}_{\Rightarrow \text{ unsatisfiable}}
-			\]
+		\begin{itemize}
+			\item Suppose there were such a formula $ \varphi $. We describe the property that \alert{the longest path is of even or infinite length} with $ \{\lambda_{2n+1} \mid n \in \N\} $: \begin{align*}
+				\psi_k &:= \underbrace{\exists x_1, \dots, x_{k+1} : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^{k+1} x_i \neq x_j \wedge \bigwedge_{i=1}^k E(x_i, x_{i+1})}_{\text{There exists a path of length } k} \\
+				\lambda_k &:= \neg(\underbrace{\psi_k \wedge \neg\psi_{k+1}}_{\text{Length of longest path } = k}) \equiv \neg\psi_k \vee \psi_{k+1}
+			\end{align*}
 		\end{itemize}
 	\end{proofs}
+\end{frame}
+
+\begin{frame}
+	\begin{proof}[\proofname\ (continued)]
+		\begin{itemize}
+			\item \[
+			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Longest path is of odd length}} \cup \underbrace{\{\lambda_{2n+1} \mid n \in \N\}}_{\text{Longest path is of even or infinite length}}}_{\Rightarrow \text{ unsatisfiable}}
+			\]
+			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. Let $ k' \ge k $ be some odd number. Any finite graph with length of longest path equal $ k' $ is a model for $ M $.
+			\item It follows that, by compactness, $ C $ is satisfiable. At the same time, $ C $ is unsatisfiable as we argued above. This is a contradiction.
+		\end{itemize}
+	\end{proof}
 \end{frame}
 
 \end{document}
