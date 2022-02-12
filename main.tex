@@ -73,7 +73,7 @@
 		\item Assume, for a sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
 		\item Construct an infinite set of formulas $ \{\lambda_k \mid k \in \N\} $ that describes the negation of $ P $.
 		\item Consider the set $ C = \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
-		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $.
+		\item Conclude that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
 		\item Show that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
 		\item Conclude that, by compactness, $ C $ is satisfiable, meaning that we get a contradiction.
 	\end{itemize}
@@ -103,7 +103,7 @@
 			\item Consider an arbitrary but finite $ M \subseteq C $ where, as we just defined, \[
 			C = \underbrace{\{\varphi\}}_{\text{Finite model}} \cup \quad \underbrace{\{\lambda_k \mid k \in \N\}}_{\infty \text{ model}}
 			\] Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. Any structure with at least $ k $ elements thus satisfies $ M $.
-			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable as we argued on the previous slide. This is a contradiction.
+			\item By compactness, $ C $ is therefore satisfiable. However, $ C $ is unsatisfiable by construction (see previous slide). This is a contradiction.
 		\end{itemize}
 	\end{proof}
 \end{frame}
@@ -136,7 +136,7 @@
 
 	\textbf{Important conclusion}: in order for this proof technique to work, we need to ``approximate'' the negation of $ P $ using $ \{\lambda_k \mid k \in \Npos\} $ in a way, such that a finite subset of $ \{\lambda_k \mid k \in \Npos\} $ doesn't directly contradict $ \varphi $.
 	
-	\textbf{In this example}: we cannot ``approximate'' existence of cycles without contradicting acyclicity, because we have to state the existence of a cycle of a certain length with a formula and this directly contradicts acyclicity.
+	\textbf{In this example}: we could not ``approximate'' existence of cycles without contradicting acyclicity, because we described the existence of a cycle of a specific length with a single formula.
 \end{frame}
 
 \begin{frame}
@@ -185,7 +185,7 @@
 			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Longest path is of odd length}} \cup \underbrace{\{\lambda_{2n+1} \mid n \in \N\}}_{\text{Longest path is of even or infinite length}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
 			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \N $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. Let $ k' \ge k $ be some odd number. Any finite graph with length of longest path equal $ k' $ is a model for $ M $.
-			\item It follows that, by compactness, $ C $ is satisfiable. At the same time, $ C $ is unsatisfiable as we argued above. This is a contradiction.
+			\item It follows that, by compactness, $ C $ is satisfiable. At the same time, $ C $ is unsatisfiable by construction. This is a contradiction.
 		\end{itemize}
 	\end{proof}
 \end{frame}
