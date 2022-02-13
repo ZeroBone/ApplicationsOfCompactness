@@ -1,5 +1,5 @@
-\documentclass[handout]{beamer}
-% \documentclass{beamer}
+% \documentclass[handout]{beamer}
+\documentclass{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -54,7 +54,7 @@
 	\begin{proof}
 		($ \Rightarrow $): If there exists $ \nu \models \Sigma $, then $ \nu $ will satisfy every finite subset of $ \Sigma $.
 		
-		($ \Leftarrow $): this direction is rather tricky, see lecture notes.
+		($ \Leftarrow $): proof omitted
 	\end{proof}
 
 	\pause
@@ -117,7 +117,7 @@
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. We can try proving this using the following strategy:
 	\begin{itemize}[<+->]
 		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
-		\item \textit{Construct} an infinite set of formulas (i.e. $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
+		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
 		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
 		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
 		\item \textit{Show} that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
@@ -171,7 +171,7 @@
 	\begin{proofs}[\proofname\ attempt (incorrect) - continued]
 		\begin{itemize}
 			\item \[
-			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle}}}_{\Rightarrow \text{ unsatisfiable}}
+			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle of every possible length}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
 			\item Consider some finite subset $ M \subseteq C $
 			\item \alert{Problem}: $ M $ may contain $ \varphi $ and some $ \lambda_i $-formulas, we cannot however construct a graph that is both acyclic and has a cycle of some specific length.
@@ -188,10 +188,10 @@
 \begin{frame}
 	\frametitle{Acyclicity is not first-order definable}
 	
-	\textbf{Trick}: we can instead prove that the negation of acyclicity, namely the existence of a cycle, is not first-order definable. This will prove the initial theorem, because \alert{some property is first-order definable iff its negation is first-order definable}.
+	\textbf{Trick}: we can negate $ \varphi $ in the proof and thus show that the negation of acyclicity, namely the existence of a cycle, is not first-order definable. In other words, \alert{some property is first-order definable iff its negation is first-order definable}.
 	
-	\begin{theorem}[Equivalent to previous Theorem]
-		Let $ \sigma = \{E_{/2}\} $ be a signature, where $ E $ is the predicate symbol representing the edge relation. There is no $ \varphi \in \FO(\sigma) $ expressing the fact that the graph contains a cycle.
+	\begin{theorem}[restated]
+		Let $ \sigma = \{E_{/2}\} $ be a signature, where $ E $ is the predicate symbol representing the edge relation. There is no $ \varphi \in \FO(\sigma) $ expressing the fact that the graph is acyclic.
 	\end{theorem}
 \end{frame}
 
@@ -199,9 +199,9 @@
 	\begin{proof}
 		\begin{itemize}[<+->]
 			\item Suppose there were such a formula $ \varphi $. We define \[\lambda_k := \underbrace{\neg \exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is no cycle of length } k}\]\[
-			C := \underbrace{\underbrace{\{\varphi\}}_{\exists\text{ cycle}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There are no cycles}}}_{\Rightarrow \text{ unsatisfiable}}
+			C := \underbrace{\underbrace{\{\neg\varphi\}}_{\exists\text{ cycle}} \quad \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There are no cycles}}}_{\Rightarrow \text{ unsatisfiable}}
 			\]
-			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \Npos $ such that $ M $ does not contain any $ \lambda_i $ for $ i \ge k $. We can easily construct a graph with a cycle of length $ k $ and without shorter cycles (how?), meaning that $ M $ is satisfiable.
+			\item Consider an arbitrary but finite $ M \subseteq C $. Since $ M $ is finite, we can find a $ k \in \Npos $ such that $ M $ doesn't contain any $ \lambda_i $ for $ i \ge k $. We can easily construct a graph with a cycle of length $ k $ and without shorter cycles (how?), meaning that $ M $ is satisfiable.
 			\item By compactness, $ C $ is satisfiable, which is a contradiction.
 		\end{itemize}
 	\end{proof}
@@ -225,6 +225,7 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Longest path has odd length is not first-order definable}
 	\begin{proof}[\proofname\ (continued)]
 		\begin{itemize}[<+->]
 			\item \[
@@ -234,6 +235,21 @@
 			\item It follows that, by compactness, $ C $ is satisfiable. At the same time, $ C $ is unsatisfiable by construction. This is a contradiction.
 		\end{itemize}
 	\end{proof}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Further examples of not first-order definable properties}
+	
+	The same proof technique can be used to show the following results, exact proofs are left as an exercise.
+	
+	\begin{theorem}
+		There is no $ \varphi \in \FO(\{E_{/2}\}) $ expressing the property that the graph is bipartite.
+	\end{theorem}
+	\textbf{Hint}: a graph is bipartite iff there are no cycles of odd length.
+	
+	\begin{theorem}
+		Let $ \sigma = \{E_{/2}, a, b\} $ be a signature, where $ E $ is the predicate symbol representing the edge relation and $ a, b $ are constants. There is no $ \varphi \in \FO(\sigma) $ expressing the fact that there exists a path from $ a $ to $ b $.
+	\end{theorem}
 \end{frame}
 
 \section{Application: Finitary Ramsey Theorem}
@@ -260,7 +276,7 @@
 	\frametitle{Finitary Ramsey Theorem}
 	\begin{proofs}
 		Suppose, for the sake of contradiction, that $ \exists k \in \Nsimpl \quad \forall n \in \Nsimpl $ there exists a graph with $ n $ vertices that has no $ k $-clique and no $ k $-independent-set. We describe this using an infinite set of formulas $ \Sigma $: \begin{align*}
-			\alpha_k &:= \underbrace{\forall v_1, \dots, v_k \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j\Bigg) \rightarrow \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k \neg E(v_i, v_j)\Bigg) \wedge \Bigg(\bigvee_{\substack{i,j = 1 \\ i \neq j}}^k E(v_i, v_j)\Bigg)}_{\text{There is no clique or independent-set of size } k} \\
+			\alpha_k &:= \underbrace{\neg\exists v_1, \dots, v_k \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j\Bigg) \wedge \Bigg(\bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k E(v_i, v_j) \vee \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k \neg E(v_i, v_j)\Bigg)}_{\text{There is no clique or independent-set of size } k} \\
 			\beta_k &:= \underbrace{\exists v_1, \dots, v_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k v_i \neq v_j}_{\text{Graph has at least } k \text{ vertices}} \\
 			\Sigma &:= \{\alpha_k\} \cup \{\beta_n \mid n \in \N\}
 		\end{align*}
