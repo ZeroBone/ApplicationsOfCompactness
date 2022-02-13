@@ -1,5 +1,5 @@
-% \documentclass[handout]{beamer}
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+% \documentclass{beamer}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -54,7 +54,7 @@
 	\begin{proof}
 		($ \Rightarrow $): If there exists $ \nu \models \Sigma $, then $ \nu $ will satisfy every finite subset of $ \Sigma $.
 		
-		($ \Leftarrow $): proof omitted
+		($ \Leftarrow $): proof of this direction is omitted
 	\end{proof}
 
 	\pause
@@ -65,9 +65,9 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Compactness for first order logic}
-	\begin{theorem}[Compactness for first order logic]
-		A set of closed first order logic formulas $ \Sigma $ is satisfiable if and only if every finite subset of $ \Sigma $ is satisfiable.
+	\frametitle{Compactness for first-order logic}
+	\begin{theorem}[Compactness for first-order logic]
+		A set of closed first-order logic formulas $ \Sigma $ is satisfiable if and only if every finite subset of $ \Sigma $ is satisfiable.
 	\end{theorem}
 	\pause
 	\begin{proof}
@@ -89,7 +89,7 @@
 		\begin{align*}
 			\Sigma \models \alpha &\Leftrightarrow \Sigma \cup \{\neg\alpha\} \text{ is unsatisfiable} \\
 			&\Leftrightarrow \text{There is a finite unsatisfiable } \Sigma' \subseteq \Sigma \cup \{\neg\alpha\} \\
-			&\Leftrightarrow \Sigma' \cup \{\neg\alpha\} \text{ is unsatisfiable}, \Sigma' \text{ finite} \\
+			&\Leftrightarrow \Sigma' \cup \{\neg\alpha\} \text{ is unsatisfiable}, \Sigma' \text{ is finite} \\
 			&\Leftrightarrow \Sigma' \models \alpha \text{ for some finite } \Sigma'
 		\end{align*}
 		Here, we use the contrapositive form of compactness in the second equivalence.
@@ -114,13 +114,13 @@
 
 \begin{frame}
 	\frametitle{Strategy for proving non-expressibility results}
-	Suppose we want to show that some \alert{property $ P $ is not expressible} in first order logic. We can try proving this using the following strategy:
+	Suppose we want to show that some \alert{property $ P $ is not expressible} in first-order logic. We can try proving this using the following strategy:
 	\begin{itemize}[<+->]
 		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
 		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
 		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
 		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
-		\item \textit{Show} that, on the other hand, for every finite $ M \subseteq C $, there is a model with property $ P $.
+		\item \textit{Show} that for every finite $ M \subseteq C $ there exists a model $ (U, I) \models M $ with property $ P $.
 		\item \textit{Conclude} that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiablity of $ C $.
 	\end{itemize}
 \end{frame}
@@ -160,15 +160,15 @@
 		Let $ \sigma = \{E_{/2}\} $ be a signature, where $ E $ is the predicate symbol representing the edge relation. There is no $ \varphi \in \FO(\sigma) $ expressing the fact that the graph is acyclic.
 	\end{theorem}
 	\pause
-	\begin{proofs}[\proofname\ attempt (incorrect)]
+	\begin{block}{Incorrect proof attempt}
 		\begin{itemize}
 			\item Suppose there were such a formula $ \varphi $. We describe the existence of some cycle with $ \{\lambda_k \mid k \in \Npos\} $ where \[\lambda_k := \underbrace{\exists x_1, \dots, x_k : \bigwedge_{\substack{i,j = 1 \\ i \neq j}}^k x_i \neq x_j \wedge \bigwedge_{i=1}^{k-1} E(x_i, x_{i+1}) \wedge E(x_k, x_1)}_{\text{There is a cycle of length } k}\]
 		\end{itemize}
-	\end{proofs}
+	\end{block}
 \end{frame}
 
 \begin{frame}
-	\begin{proofs}[\proofname\ attempt (incorrect) - continued]
+	\begin{block}{Incorrect proof attempt -- continued}
 		\begin{itemize}
 			\item \[
 			C := \underbrace{\underbrace{\{\varphi\}}_{\text{Graph acyclic}} \cup \quad \underbrace{\{\lambda_k \mid k \in \Npos\}}_{\text{There is a cycle of every possible length}}}_{\Rightarrow \text{ unsatisfiable}}
@@ -176,7 +176,7 @@
 			\item Consider some finite subset $ M \subseteq C $
 			\item \alert{Problem}: $ M $ may contain $ \varphi $ and some $ \lambda_i $-formulas, we cannot however construct a graph that is both acyclic and has a cycle of some specific length.
 		\end{itemize}
-	\end{proofs}
+	\end{block}
 
 	\pause
 
