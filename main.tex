@@ -117,15 +117,15 @@
 	Suppose we want to show that some \alert{property $ P $ is not expressible} in first-order logic. We can try proving this using the following strategy:
 	\begin{itemize}[<+->]
 		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
-		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \N\} $) that describes the negation of $ P $.
-		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \N\} $.
-		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \N\} $ and vice versa.
+		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \Nsimpl\} $) that describes the negation of $ P $.
+		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \Nsimpl\} $.
+		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \Nsimpl\} $ and vice versa.
 		\item \textit{Show} that for every finite $ M \subseteq C $ there exists a model $ (U, I) \models M $ with property $ P $.
-		\item \textit{Conclude} that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiablity of $ C $.
+		\item \textit{Conclude} that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiability of $ C $.
 	\end{itemize}
 \end{frame}
 
-\section{Examples of inexpressibility results}
+\section{Examples of non-expressibility results}
 
 \begin{frame}
 	\frametitle{Finiteness is not first-order definable}
