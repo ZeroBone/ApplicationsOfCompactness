@@ -114,13 +114,13 @@
 
 \begin{frame}
 	\frametitle{Strategy for proving non-expressibility results}
-	Suppose we want to show that some \alert{property $ P $ is not expressible} in first-order logic. We can try proving this using the following strategy:
+	Suppose we want to show that some \alert{property $ P $ is not expressible} in first-order logic. We can try proving this using the following technique:
 	\begin{itemize}[<+->]
 		\item \textit{Assume}, for the sake of contradiction, that there exists a formula $ \varphi $ expressing $ P $.
-		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \Nsimpl\} $) that describes the negation of $ P $.
+		\item \textit{Construct} an infinite set of formulas (e.g., $ \{\lambda_k \mid k \in \Nsimpl\} $) enforcing the negation of $ P $.
 		\item \textit{Consider} the set $ C := \{\varphi\} \cup \{\lambda_k \mid k \in \Nsimpl\} $.
-		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \Nsimpl\} $ and vice versa.
-		\item \textit{Show} that for every finite $ M \subseteq C $ there exists a model $ (U, I) \models M $ with property $ P $.
+		\item \textit{Argue} that $ C $ is unsatisfiable since every model of $ \varphi $ cannot be a model of $ \{\lambda_k \mid k \in \Nsimpl\} $.
+		\item \textit{Show} that for every finite $ M \subseteq C $ there exists a model $ \mathcal{A} \models M $ satisfying property $ P $. Hence, $ C $ is finitely satisfiable.
 		\item \textit{Conclude} that, by compactness, $ C $ is satisfiable, which is a contradiction to the unsatisfiability of $ C $.
 	\end{itemize}
 \end{frame}
